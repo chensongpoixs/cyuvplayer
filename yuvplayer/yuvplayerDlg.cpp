@@ -570,7 +570,13 @@ void CyuvplayerDlg::OnColor(UINT nID )
 			menu->CheckMenuItem( ID_COLOR_RGB32,   MF_CHECKED);
 			m_color = RGB32;
 			break;
-			
+		case ID_COLOR_BGRA32:
+		{
+			menu->CheckMenuItem(ID_COLOR_BGRA32, MF_CHECKED);
+			m_color = RGB32;
+			break;
+			break;
+		}
 		case ID_COLOR_RGB24:
 			menu->CheckMenuItem( ID_COLOR_RGB24,   MF_CHECKED);
 			m_color = RGB24;
@@ -620,7 +626,7 @@ void CyuvplayerDlg::UpdateParameter()
         frame_size_uv *= 2; 
     }
 
-	if (m_color == RGB32)
+	if (m_color == RGB32 || m_color == BGRA32)
 		frame_size = frame_size_y*4;
 	else if (m_color == RGB24)
 		frame_size = frame_size_y*3;
@@ -649,7 +655,7 @@ void CyuvplayerDlg::LoadFrame(void)
 
 	_lseeki64( fd, (__int64)cur*(__int64)frame_size, SEEK_SET );
 
-	if( m_color == RGB32 )
+	if( m_color == RGB32 || m_color == BGRA32)
 		_read( fd, misc, frame_size_y*4 );
 
 	else if( m_color == RGB24 )
@@ -861,7 +867,7 @@ void CyuvplayerDlg::yuv2rgb(void)
 		}
 	}
 
-	else if (m_color == RGB32 || m_color == RGB24 || m_color == RGB16) {
+	else if (m_color == RGB32 || m_color == RGB24 || m_color == RGB16 || m_color == BGRA32) {
 		for( j = 0 ; j < height ; j++ ){
 			cur = line;
 			for( i = 0 ; i < width ; i++ ){
@@ -869,6 +875,12 @@ void CyuvplayerDlg::yuv2rgb(void)
 					r = misc[(j*width+i)*4+2];
 					g = misc[(j*width+i)*4+1];
 					b = misc[(j*width+i)*4+0];
+				}
+				else if (m_color == BGRA32)
+				{
+					r = misc[(j * width + i) * 4 + 0];
+					g = misc[(j * width + i) * 4 + 1];
+					b = misc[(j * width + i) * 4 + 2];
 				}
 				else if (m_color == RGB24) {
 					r = misc[(j*width+i)*3+2];

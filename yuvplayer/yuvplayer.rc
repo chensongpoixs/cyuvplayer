@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î(´ëÇÑ¹Î±¹) resources
+// º«Óï(º«¹ú) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
@@ -214,6 +214,7 @@ BEGIN
         MENUITEM "RGB32",                       ID_COLOR_RGB32
         MENUITEM "RGB24",                       ID_COLOR_RGB24
         MENUITEM "RGB16",                       ID_COLOR_RGB16
+        MENUITEM "BGRA32",                      ID_COLOR_BGRA32
     END
     POPUP "&Zoom"
     BEGIN
@@ -284,7 +285,7 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\wi0111-48.ico"
 
-#endif    // ÇÑ±¹¾î(´ëÇÑ¹Î±¹) resources
+#endif    // º«Óï(º«¹ú) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
